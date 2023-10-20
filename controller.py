@@ -12,3 +12,6 @@ def create_item(db: Session, item: schemas.ItemCreate):
     db.commit()
     db.refresh(db_item)
     return db_item
+
+def getItem(nome_campi: str, db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.Item).filter_by(campus = nome_campi).offset(skip).limit(limit).one()
